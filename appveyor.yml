@@ -1,0 +1,18 @@
+# https://www.appveyor.com/docs/build-configuration/
+# https://www.appveyor.com/docs/windows-images-software/
+version: 1.0.{build}
+image: Visual Studio 2015
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+    - master
+cache:
+  - au3pm -> **\au3pm.json, **\au3pm.json
+install:
+  - ps: (new-object net.webclient).DownloadFile('https://github.com/genius257/au3pm/releases/download/1/au3pm.exe', 'au3pm.exe')
+  - ps: au3pm install
+build_script:
+  - au3pm build
+test_script:
+  - au3pm/bin/au3unit test

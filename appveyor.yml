@@ -1,13 +1,16 @@
 version: 1.0.{build}
 image: Visual Studio 2015
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+    - master
+cache:
+  - au3pm -> **\au3pm.json, **\au3pm.json
 install:
-- ps: >-
-    $installer = "$PSScriptRoot\setup.exe"
-    (New-Object System.Net.WebClient).DownloadFile("https://github.com/turbo/AutoIt-CI/releases/download/1/autoit-v3-setup.exe", $installer)
-    Start-Process -FilePath $installer -ArgumentList "/S" -NoNewWindow -Wait
+  - ps: (new-object net.webclient).DownloadFile('https://github.com/genius257/au3pm/releases/download/1/au3pm.exe', 'au3pm.exe')
+  - ps: au3pm install
 build_script:
-- cmd: >-
-    "%HOMEDRIVE%\Program Files (x86)\AutoIt3\aut2exe\aut2exe.exe"  /in "%CD%\program.au3" /out "%CD%\program.exe" /nopack /comp 2 /Console
-    
-    program.exe
-test: off
+  - au3pm build
+test_script:
+  - au3pm/bin/au3unit test

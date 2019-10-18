@@ -1,4 +1,5 @@
 #include <Array.au3>
+#include "../StringRegExpSplit.au3"
 
 _ArrayDisplay( _
     StringRegExpSplit("abc", "(?:)", 0) _

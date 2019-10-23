@@ -8,7 +8,7 @@ branches:
   only:
     - master
 cache:
-  - au3pm -> **\au3pm.json, **\au3pm.json
+  - au3pm -> **\au3pm.json, **\au3pm.lock
 install:
   - ps: (new-object net.webclient).DownloadFile('https://github.com/genius257/au3pm/releases/download/1/au3pm.exe', 'au3pm.exe')
   - ps: au3pm install

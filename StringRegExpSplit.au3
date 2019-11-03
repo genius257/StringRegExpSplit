@@ -13,6 +13,10 @@ Func StringRegExpSplit($sString, $sPattern, $iLimit = 0, $iFlags = $PREG_SPLIT_N
         $iOffset = @extended
         
         $sValue = StringMid($sString, $iPrevOffset, $iOffset - StringLen($aMatches[0]) - $iPrevOffset)
+        If BitAND($PREG_SPLIT_OFFSET_CAPTURE, $iFlags) Then
+            Local $aValue = [$sValue, $iPrevOffset]
+            $sValue = $aValue
+        EndIf
         If (Not BitAND($PREG_SPLIT_NO_EMPTY, $iFlags)) Or (Not $sValue = "") Then
             ReDim $aReturn[UBound($aReturn, 1) + 1]
             $aReturn[UBound($aReturn, 1) - 1] = $sValue
@@ -29,6 +33,10 @@ Func StringRegExpSplit($sString, $sPattern, $iLimit = 0, $iFlags = $PREG_SPLIT_N
     WEnd
 
     $sValue = StringMid($sString, $iPrevOffset)
+    If BitAND($PREG_SPLIT_OFFSET_CAPTURE, $iFlags) Then
+        Local $aValue = [$sValue, $iPrevOffset]
+        $sValue = $aValue
+    EndIf
     If (Not BitAND($PREG_SPLIT_NO_EMPTY, $iFlags)) Or (Not $sValue == "") Then
         ReDim $aReturn[UBound($aReturn, 1) + 1]
         $aReturn[UBound($aReturn, 1) - 1] = $sValue

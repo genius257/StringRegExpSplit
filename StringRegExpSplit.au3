@@ -28,7 +28,7 @@ Func StringRegExpSplit($sString, $sPattern, $iLimit = 0, $iFlags = $PREG_SPLIT_N
         If StringLen($aMatches[0]) = 0 Then $iOffset += 1
     WEnd
 
-    $sValue = StringMid($sString, $iOffset)
+    $sValue = StringMid($sString, $iPrevOffset)
     If (Not BitAND($PREG_SPLIT_NO_EMPTY, $iFlags)) Or (Not $sValue == "") Then
         ReDim $aReturn[UBound($aReturn, 1) + 1]
         $aReturn[UBound($aReturn, 1) - 1] = $sValue

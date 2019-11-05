@@ -2,8 +2,6 @@
 
 Global Enum Step *2 $PREG_SPLIT_NONE = 0, $PREG_SPLIT_NO_EMPTY = 1, $PREG_SPLIT_DELIM_CAPTURE, $PREG_SPLIT_OFFSET_CAPTURE
 
-;FIXME: either support PREG_SPLIT_OFFSET_CAPTURE or remove the flag
-
 Func StringRegExpSplit($sString, $sPattern, $iLimit = 0, $iFlags = $PREG_SPLIT_NONE)
     Local $iPrevOffset = 1, $iOffset = 1, $aMatches, $aReturn[0], $i, $sValue, $iCount = 0
     If BitAND($PREG_SPLIT_DELIM_CAPTURE, $iFlags) And $iLimit > 0 And $iLimit < 2 Then

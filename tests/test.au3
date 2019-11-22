@@ -35,3 +35,6 @@ assertEquals($expected, StringRegExpSplit("0|1|2|3|4|5|6|7|8|9", "\|", 2, $PREG_
 
 Global $expected = ["0", "|", "|", "1||2||3||4||5||6||7||8||9"]
 assertEquals($expected, StringRegExpSplit("0||1||2||3||4||5||6||7||8||9", "(\|)(\|)", 2, $PREG_SPLIT_DELIM_CAPTURE))
+
+Global $expected = [StringFormat("Array (\n"), StringFormat("    '0' => 1\n"), ")"]
+assertEquals($expected, StringRegExpSplit(StringFormat("Array (\n    '0' => 1\n)"), "(.*\R)", 0, BitOR($PREG_SPLIT_DELIM_CAPTURE, $PREG_SPLIT_NO_EMPTY)))
